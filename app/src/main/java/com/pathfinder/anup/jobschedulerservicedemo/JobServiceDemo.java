@@ -19,7 +19,7 @@ public class JobServiceDemo extends JobService {
     @Override
     public boolean onStartJob(JobParameters jobParameters) {
         this.jobParameters = jobParameters;
-        Log.d("TestService", "Work to be called from here");
+        Log.d("Anup", "Schedule service will start working");
         backgroundThread = new DoInBackgroundThread();
         backgroundThread.execute();
         return false;
@@ -27,7 +27,7 @@ public class JobServiceDemo extends JobService {
 
     @Override
     public boolean onStopJob(JobParameters jobParameters) {
-        Log.d("TestService", "System calling to stop the job here");
+        Log.d("Anup", "Scheduled service is calling to stop the job here");
         if(backgroundThread != null){
             backgroundThread.cancel(true);
         }
@@ -38,13 +38,13 @@ public class JobServiceDemo extends JobService {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            Log.d("DoItTask", "Working here...");
+            Log.d("Anup", "Working here...");
             return null;
         }
 
         @Override
         protected void onPostExecute(Void aVoid) {
-            Log.d("DoItTask", "Clean up the task here and call jobFinished...");
+            Log.d("Anup", "Clean up the task here and call jobFinished...");
             jobFinished(jobParameters, false);
             super.onPostExecute(aVoid);
         }
